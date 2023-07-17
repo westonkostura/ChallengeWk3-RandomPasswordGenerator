@@ -4,14 +4,15 @@
 var btn = document.getElementById("generate");
 
 function generatePassword() {
-  var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var charset = "abcdefghijklmnopqrstuvwxyz";
+  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var specialChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
   var password = "";
   var randomIndex = '';
 
-
-  const passlength = parseInt(prompt("Enter amount characters 8-128"));
-  const includeSpecialChars = confirm("Include special characters?");
+const includeUpperCase = confirm("Include capital letters in your password?")
+  const includeSpecialChars = confirm("Include special characters in your password?");
+  const passlength = parseInt(prompt("Enter amount characters for your password. Enter a value between 8-128."));
 
   while (isNaN(passlength) || passlength < 8 || passlength > 128) {
     alert("Invalid prompt, please try again.");
@@ -21,6 +22,9 @@ function generatePassword() {
   randomIndex += charset;
    if (includeSpecialChars) {
     randomIndex += specialChars;
+  }
+  if (includeUpperCase) {
+    randomIndex += upperCase;
   }
 
   for (var i = 0; i < passlength; i++) {
